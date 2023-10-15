@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGL Program</title>
+	<style>
+		body {
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			background-color: #eee;
+		}
+		#content-container {
+			text-align: center;
+		}
+		canvas {
+			display: block;
+			background-color: #ddd;
+			margin-bottom: 10px;  /* Space between the canvas and the buttons */
+		}
+	</style>
+	
+</head>
+<body>
+    
+
+	<div id="content-container">
+		<canvas id="webgl-canvas" width="640" height="480"></canvas>
+
+    <!-- Vertex Shader -->
+	<script id="vertex-shader" type="x-shader/x-vertex">
+		attribute vec2 position;
+		attribute vec2 texcoord;
+		varying vec2 v_texcoord;
+		uniform float rotationX;
+		uniform float rotationY;
+		void main() {
+			gl_Position = vec4(
+				cos(rotationY) * position.x - sin(rotationX) * sin(rotationY) * position.y,
+				cos(rotationX) * position.y,
+				sin(rotationX) * position.y + sin(rotationY) * cos(rotationX) * position.x,
+				1.0
+			);
+			v_texcoord = texcoord;
+		}
+	</script>
+	
+
+    <!-- Fragment Shader -->
+	<script id="fragment-shader" type="x-shader/x-fragment">
+		precision mediump float;
+		varying vec2 v_texcoord;
+		uniform sampler2D u_texture;
+		void main() {
+			gl_FragColor = texture2D(u_texture, v_texcoord);
+		}
+	</script>
+	
+
+    <script src="webgl-script.js"></script>
+		<div id="controls">
+			<button onclick="playAudio()">Play</button>
+			<button onclick="pauseAudio()">Pause</button>
+		</div>
+	</div>
+	<audio id="birthdaySong" loop>
+		<source src="music.mp3" type="audio/mp3">
+		Your browser does not support the audio element.
+	</audio>
+	
+
+	
+</body>
+</html>
