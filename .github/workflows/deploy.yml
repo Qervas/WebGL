@@ -1,0 +1,25 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Triggers the workflow on push events but only for the "main" branch
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout source code
+        uses: actions/checkout@v2  # Use v2 for the latest version of checkout action
+
+      # Deploys the code to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3  # Use v3 for the latest version of gh-pages action
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .  # Publish the root directory to gh-pages
