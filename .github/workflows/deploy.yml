@@ -13,7 +13,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       
-      - name: Deploy Project1 to GitHub Pages
+      - name: Deploy Porject: GreetingCard to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
