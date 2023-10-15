@@ -13,9 +13,17 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       
+<<<<<<< HEAD
       - name: Deploy Project1 to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./GreetingCard-app
           publish_branch: GreetingCard  # deploy to a different branch
+=======
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+>>>>>>> main
