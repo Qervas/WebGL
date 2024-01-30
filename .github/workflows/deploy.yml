@@ -19,3 +19,11 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./GreetingCard-app
           publish_branch: GreetingCard  # deploy to a different branch
+      
+      - name: Deploy Porject: SolarSystem to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./SolarSystem-app
+          publish_branch: SolarSystem  # deploy to a different branch
+       
